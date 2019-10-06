@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 class App extends Component {
 
@@ -47,21 +47,10 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    };
 
 
     let person = null;
+    let btnClass = '';
 
     if (this.state.showPerson) {
       person = (
@@ -78,26 +67,21 @@ class App extends Component {
 
         </div>
       )
-
-      style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      }
+      btnClass = classes.Red;
     }
 
-    const classes = []
+    const changeClasses = []
     if (this.state.persons.length <= 2) {
-      classes.push('bold');
+      changeClasses.push(classes.bold);
     }
     if (this.state.persons.length <= 1) {
-      classes.push('red');
+      changeClasses.push(classes.red);
     }
     return (
-      <div className="App">
-        <h1 className={classes.join(' ')}>Welcome</h1>
-        <p className={classes.join(' ')}>testing</p>
-        <button style={style} onClick={this.togglePersonHandler}>Change Name</button>
+      <div className={classes.App}>
+        <h1 className={changeClasses.join(' ')}>Welcome</h1>
+        <p className={changeClasses.join(' ')}>testing</p>
+        <button className={btnClass} onClick={this.togglePersonHandler}>Change Name</button>
         {person}
       </div >
     );
